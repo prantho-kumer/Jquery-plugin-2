@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- fonts -->
+    <script src="https://kit.fontawesome.com/79e5125f6d.js" crossorigin="anonymous"></script>
+    <!-- plugins -->
+    <link rel="stylesheet" href="assets/tiltedpage_scroll-master/demo/tiltedpage-scroll.css">
+    <!-- CSS links -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body class="">
+    <header>
+        <div class="container">
+            <!-- nav -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.html">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tiltedpage.html">Tilted page</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- nav -->
+
+        </div>
+    </header>
+    <!-- /   header -->
+    <div class="container">
+        <h1 class="heading">Tilted page</h1>
+    </div>
+    <div class="main">
+        <section class="page1  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo1.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page2  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo2.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page3  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo3.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="last-page section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo4.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page1  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo1.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page2  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid" src="images/demo2.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page3  section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid " src="images/demo3.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class=" section last-page">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="img-fluid " src="images/demo4.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <!-- js links -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="js/popper.min.js"></script>
+    <!-- plugin -->
+    <script src="assets/tiltedpage_scroll-master/jquery.tiltedpage-scroll.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".main").tiltedpage_scroll({
+                sectionContainer: "> section", // In case you don't want to use <section> tag, you can define your won CSS selector here
+                angle: 5, // You can define the angle of the tilted section here. Change this to false if you want to disable the tilted effect.The default value is 50 degrees.
+                opacity: true, // You can toggle the opacity effect with this option. The default value is true
+                scale: false, // You can toggle the scaling effect here as well. The default value is true.
+                outAnimation: true // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
+            });
+        });
+    </script>
+</body>
+
+</html>

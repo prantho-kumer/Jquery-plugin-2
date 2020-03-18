@@ -7,15 +7,17 @@
     <!-- fonts -->
     <script src="https://kit.fontawesome.com/79e5125f6d.js" crossorigin="anonymous"></script>
     <!-- plugins -->
+    <link rel="stylesheet" href="assets/animsition-master/dist/css/animsition.min.css">
     <!-- CSS links -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/media.css">
 
-    <title>Hello, world!</title>
+    <title>animsition</title>
 </head>
 
-<body>
+<body class="animsition" data-animsition-in-class="flip-in-y-fr" data-animsition-in-duration="1000"
+    data-animsition-out-class="flip-out-y-fr" data-animsition-out-duration="800">
     <header>
         <div class="container">
             <!-- nav -->
@@ -48,6 +50,22 @@
     <!-- /   header -->
 
     <!-- animsition -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- content -->
+
+                    <a href="index.html" class="animsition-link text-primary" data-animsition-out-class="fade-out-right"
+                        data-animsition-out-duration="2000"> <img src="images/demo1.jpg" alt=""></a>
+                    <a href="tiltedpage.html" class="animsition-link text-dark" data-animsition-out-class="rotate-in"
+                        data-animsition-out-duration="500"><img src="images/demo2.jpg" alt=""></a>
+
+                    <!-- content -->
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -55,15 +73,42 @@
 
     <!-- js links -->
     <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
-    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <!-- plugin -->
-    <!-- counter -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <script src="assets/Counter-Up-master/jquery.counterup.min.js"></script>
+    <script src="assets/animsition-master/dist/js/animsition.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".animsition").animsition({
+                inClass: 'rotate-in-sm',
+                outClass: 'rotate-out-sm',
+                inDuration: 1500,
+                outDuration: 800,
+                linkElement: '.animsition-link',
+                // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+                loading: true,
+                loadingParentElement: 'body', //animsition wrapper element
+                loadingClass: 'animsition-loading',
+                loadingInner: '', // e.g '<img src="loading.svg" />'
+                timeout: false,
+                timeoutCountdown: 5000,
+                onLoadEvent: true,
+                browser: ['animation-duration', '-webkit-animation-duration'],
+                // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+                // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+                overlay: false,
+                overlayClass: 'animsition-overlay-slide',
+                overlayParentElement: 'body',
+                transition: function (url) {
+                    window.location.href = url;
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

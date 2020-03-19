@@ -7,6 +7,8 @@
     <!-- fonts -->
     <script src="https://kit.fontawesome.com/79e5125f6d.js" crossorigin="anonymous"></script>
     <!-- plugins -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
     <!-- CSS links -->
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -38,6 +40,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="animsition.html">Animsition</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="form_validation.html">Form validation</a>
                         </li>
                     </ul>
                 </div>
@@ -112,6 +117,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <h1 class="heading">Curved text</h1>
                     <!-- content -->
                     <div class="curvedtext1"> Your text goes here. </div>
                     <!-- content -->
@@ -127,24 +133,55 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div>
+                        <h1 class="heading">Form validation</h1>
+                    </div>
                     <!-- form -->
-                    <form>
+                    <form id="signupForm" method="GET" action="formsubmit.html" target="_blank">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
+                            <label for="firstname">First name:</label>
+                            <input type="text" name="firstname" class="firstname form-control" id="firstname">
+                            <label for="firstname-error" class="error" for="firstname" style="display: none;"></label>
+                        </div>
+                        <!-- /   first name -->
+                        <div class="form-group">
+                            <label for="lastname">Last name:</label>
+                            <input type="text" name="lastname" class="lastname form-control" id="lastname">
+                            <label for="lastname-error" class="error" for="lastname" style="display: none;"></label>
+                        </div>
+                        <!-- /   last name -->
+                        <div class="form-group">
+                            <label for="username">User name:</label>
+                            <input type="text" name="username" class="username form-control" id="username">
+                            <label for="username-error" class="error" for="username" style="display: none;"></label>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Password">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="password">
+                            <label for="password-error" class="error" for="password" style="display: none;"></label>
                         </div>
+                        <!-- password -->
+                        <div class="form-group">
+                            <label for="confirm_password">confirm password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                                placeholder="confirm password">
+                            <label class="error" for="confirm_password" style="display: none;"></label>
+                        </div>
+                        <!-- /  confirm password -->
+                        <div class="form-group">
+                            <label for="date">birth date:</label>
+                            <input type="text" name="date" class="date form-control" id="datepicker"
+                                placeholder="mm/dd/yyyy" required>
+                            <label for="lastname-error" for="date" style="display: none;"></label>
+                        </div>
+                        <!-- /   birth date -->
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            <p><input type="checkbox" class="form-check-input" name="agree" id="agree"></p>
+                            <label class="form-check-label" for="agree" id="agree_default">Check me out</label>
+                            <label for="agree-error" for="agree" class="error"></label>
                         </div>
+                        <!-- /   checkbox -->
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     <!-- form -->
@@ -180,6 +217,9 @@
     <script src="assets/Vide-master/dist/jquery.vide.min.js"></script>
     <!-- form validation -->
     <script src="assets/jquery-validation-1.19.1/dist/jquery.validate.min.js"></script>
+    <!-- date picker -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <!-- bootstrap -->
     <script src="js/bootstrap.min.js"></script>
@@ -216,7 +256,82 @@
                 }
             });
             // form validation
-            $("#commentForm").validate();
+            $("#signupForm").validate({
+                rules: {
+                    firstname: {
+                        required: true,
+                        minlength: 2
+                    },
+                    lastname: {
+                        required: true,
+                        minlength: 2
+                    },
+                    username: {
+
+                        required: true,
+                        minlength: 2
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 10,
+                    },
+                    confirm_password: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 10,
+                        equalTo: "#password"
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    topic: {
+                        required: "#newsletter:checked",
+                        minlength: 2
+                    },
+                    agree: "required",
+
+                },
+                messages: {
+                    firstname: "Please enter your firstname",
+                    lastname: "Please enter your lastname",
+                    username: {
+                        required: "Please enter a username",
+                        minlength: "Your username must consist of at least 2 characters"
+                    },
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long",
+                        maxlength: "Your password must not exceeds 10 characters"
+                    },
+                    confirm_password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long",
+                        maxlength: "Your password must not exceeds 10 characters",
+                        equalTo: "Please enter the same password as above"
+                    },
+                    email: "Please enter a valid email address",
+                    agree: "Please accept our policy",
+                }
+            });
+            $("#username").focus(function () {
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                if (firstname && lastname && !this.value) {
+                    this.value = firstname + "_" +
+                        lastname;
+                }
+            });
+            // date picker customize
+
+            $("#datepicker").datepicker();
+            // date picker customize
+
+
+            // date picker call
+
+
         });
     </script>
 </body>

@@ -1,0 +1,57 @@
+.highlight {
+  margin: 0 0 20px; }
+
+.main-content {
+  width: 100%;
+  padding: 0 5%;
+  max-width: 100%; }
+
+table {
+  display: table !important;
+  width: 100%; }
+  table tbody tr th {
+    width: 33.33%; }
+  table.options tbody tr th:nth-child(1), table.methods tbody tr th:nth-child(1), table.events tbody tr th:nth-child(1) {
+    width: 20%; }
+  table.options tbody tr th:nth-child(2), table.methods tbody tr th:nth-child(2), table.events tbody tr th:nth-child(2) {
+    width: 15%; }
+  table.options tbody tr th:nth-child(3), table.methods tbody tr th:nth-child(3), table.events tbody tr th:nth-child(3) {
+    width: 20%; }
+  table.options tbody tr th:nth-child(4), table.methods tbody tr th:nth-child(4), table.events tbody tr th:nth-child(4) {
+    width: 45%; }
+  table.options tbody tr td:nth-child(1), table.methods tbody tr td:nth-child(1), table.events tbody tr td:nth-child(1) {
+    color: #159957; }
+  table.options tbody tr td .highlight, table.methods tbody tr td .highlight, table.events tbody tr td .highlight {
+    margin-bottom: 0; }
+    table.options tbody tr td .highlight .language-javascript .nx, table.methods tbody tr td .highlight .language-javascript .nx, table.events tbody tr td .highlight .language-javascript .nx {
+      font-weight: bold;
+      color: #990000; }
+  table.events tbody tr th:nth-child(1) {
+    width: 30%; }
+  table.events tbody tr th:nth-child(2) {
+    width: 20%; }
+  table.events tbody tr th:nth-child(3) {
+    width: 50%; }
+
+form[class*=form-] {
+  padding: 10px;
+  border: 1px solid #d8d8d8; }
+  form[class*=form-] .form-row {
+    margin-bottom: 10px; }
+    form[class*=form-] .form-row.input-valid input, form[class*=form-] .form-row.input-valid textarea, form[class*=form-] .form-row.input-valid select {
+      box-shadow: 0 0 3px green; }
+    form[class*=form-] .form-row.input-invalid input, form[class*=form-] .form-row.input-invalid textarea, form[class*=form-] .form-row.input-invalid select {
+      box-shadow: 0 0 3px red; }
+  form[class*=form-] [class*=validation-notice] {
+    margin-top: 10px;
+    color: red;
+    font-size: 13px; }
+  form[class*=form-] input {
+    border: 1px solid #d8d8d8; }
+    form[class*=form-] input[type=text], form[class*=form-] input[type=number] {
+      display: block;
+      width: 100%; }
+
+.all-options .highlight .nx {
+  color: #990000;
+  font-weight: bold; }

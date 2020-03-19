@@ -1,0 +1,636 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="assets/css/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="deregexvalidation.js"></script>
+<script src="index.js"></script>
+<style>
+</style>
+<h2>Getting started</h2>
+<div>
+  <h3>Load Jquery and include plugin files</h3>
+  <p>After you download Jquery, load plugin files and include them in your page. To get initial styles you should load plugin CSS file. Bare in mind that validation plugin doesn't care about general design of form or fields and you have to do it in your own CSS files.</p>
+  {% highlight html %}
+<head>
+  <link rel="stylesheet" href="deregexvalidation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="deregexvalidation.min.js"></script>
+</head>{% endhighlight %}
+  <p>Also you can use another versions of Jquery. jQuery Core >= 2.2.4 or jQuery Core >= 1.12.4 should work as well </p>
+</div>
+<h2>Quick and simple example</h2>
+<h3>Requires data attribute with comma separated validation config names</h3>
+<p>Set up your HTML.</p>
+<p>
+  <small> You should know that plugin requires all fields to have parent elements with predefined CSS class. In this example it is
+    <code>form-input</code> class. You can always specify your own parent selector through the plugin settings.
+  </small>
+</p>
+{% highlight html %}
+<form class="form-1" novalidate>
+  <div class="form-row">
+    <label>First name: <input type="text" data-validation-cfg="letters_special" required>
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Enter your number: <input type="text" data-validation-cfg="digits_only" required>
+    </label>
+  </div>
+  <div class="form-row-submit">
+    <button type="button">submit</button>
+  </div>
+</form>{% endhighlight %}
+<p>Activate validation plugin in JS</p>
+<p>
+  <small>Add this snippet into your page or include it as a file.</small>
+</p>
+{% highlight javascript %}
+'use strict';
+
+(function ($, window, document, undefined) {
+
+  $(function () {
+
+    function initDeRegexValidation() {
+      $('.form-1').deRegexValidation({
+        preventSubmitOnInvalid: true,
+        disableFormOnInvalid: true,
+        validateRequiredFields: true,
+      });
+    }
+
+    initDeRegexValidation();
+
+  });
+
+})(jQuery, window, document);
+{% endhighlight %}
+<p>Try the result:</p>
+<form class="form-1" novalidate>
+  <div class="form-row">
+    <label>First name: <input type="text" name="words" data-validation-cfg="letters_special" required>
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Digits:<input type="text" name="only-digits" data-validation-cfg="digits_only" required value="">
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Digits with separtors:<input type="text" name="only-digits" data-validation-cfg="digits_and_separators_only,required" value="">
+    </label>
+  </div>
+  <div class="form-row-submit">
+    <button type="submit">submit</button>
+  </div>
+</form>
+<br>
+<div class="options-wrap">
+  <h2>Options</h2>
+  <table class="options">
+    <tbody>
+    <tr>
+      <th>Option name</th>
+      <th>Accepted values</th>
+      <th>Default value</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>
+        eventNamespace
+      </td>
+      <td>
+        string
+      </td>
+      <td>
+        {% highlight javascript %}'deRegexValidation'{%endhighlight%}
+      </td>
+      <td>
+        Event namespace
+      </td>
+    </tr>
+    <tr>
+      <td>events</td>
+      <td>string[]</td>
+      <td>
+        {% highlight javascript %}[ 'input', 'change', 'blur' ]{%endhighlight%}
+      </td>
+      <td>Array of events names which plugin will be listen to</td>
+    </tr>
+    <tr>
+      <td>dataAttrs</td>
+      <td>object</td>
+      <td>{% highlight javascript %}
+{
+  validationCfgs: 'validation-cfg'
+}{% endhighlight %}
+      </td>
+      <td>
+        <div>
+          <strong>validationCfgs</strong> - data attribute name with validations configs that is attached to input field
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>cssClasses</td>
+      <td>object</td>
+      <td>
+        {% highlight javascript %}
+{
+  formValid: 'form-valid',
+  formInvalid: 'form-invalid',
+  inputValid: 'input-valid',
+  inputInvalid: 'input-invalid',
+  noticeIndex: 'validation-notice-',
+}{% endhighlight %}
+      </td>
+      <td>
+        <div><strong>formValid</strong> - CSS class that attaches to form when form is valid</div>
+        <div><strong>formInvalid</strong> - CSS class that attaches to form when form is invalid</div>
+        <div><strong>inputValid</strong> - CSS class that attaches to input field when input field is valid</div>
+        <div><strong>inputInvalid</strong> - CSS class that attaches to input field when input field is inputInvalid</div>
+        <div><strong>noticeIndex</strong> - part of the CSS class that will be appended with index and will be attached to notice message. Hyphen in the end of the CSS class is required</div>
+      </td>
+    </tr>
+    <tr>
+      <td>selectors</td>
+      <td>object</td>
+      <td>
+{% highlight javascript %}
+{
+  inputParent: '.form-row',
+}{% endhighlight %}
+      </td>
+      <td>
+        <div><strong>inputParent</strong> - jQuery selector that will find parent element of the input field. It is used to place notices.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>noticeTagName</td>
+      <td>string</td>
+      <td>'p'</td>
+      <td>Tag name that will be used to create notices. You can specify 'div' or whatever tag fits your code.</td>
+    </tr>
+    <tr>
+      <td>preventSubmitOnInvalid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>If it is true each time invalid form is submitted plugin will apply <code>event.preventDefault()</code> method to prevent invalid form submission.</td>
+    </tr>
+    <tr>
+      <td>disableFormOnInvalid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>If it is true each button or input with <code>type="submit"</code> or every button without attribute type will be disabled until form is valid.</td>
+    </tr>
+    <tr>
+      <td>validateRequiredFields</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>If it is true each input field with <code>required</code> attribute will be validated by a plugin config.</td>
+    </tr>
+    <tr>
+      <td>userValidationCfgs</td>
+      <td>userValidationCfg[]</td>
+      <td>[ ]</td>
+      <td>
+        <div>You can provide your custom validation configs supplying them as objects. Here is an example of the possible custom validation config that you could add to userValidationCfgs array.</div>
+{% highlight javascript %}
+{
+  name: 'from_1_to_5',
+  regex: /^[1-5]?$/,
+  notice: 'Please provide number from 1 to 5'
+}{% endhighlight %}
+        <div>Also you can override any default validation config by providing your object with the same config name and with changed properties . So you can easily put multilanguage support by changing only notice according to your language.</div>
+        <div>These properties are required:</div>
+        <div><code>name</code></div>
+        <div><code>regex</code></div>
+        <div><code>notice</code></div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>Default validation rules</h3>
+  <p>Here you can see all default validation rules that you can add in <code>userValidationCfgs</code>. Don't forget that you can easily override desired properties of each rule providing object with certain name of the rule and other properties to override defaults.</p>
+{% highlight javascript %}
+{
+  name: 'letters',
+  regex: /^[a-zA-Z]*$/,
+  notice: 'Only letters'
+},
+{
+  name: 'letters_special',
+  regex: /^[a-zA-Z\/\-\s]*$/,
+  notice: 'Only letters, spaces / -'
+},
+{
+  name: 'letters_special_2',
+  regex: /^[a-zA-Z\/\-\s\.\,]*$/,
+  notice: 'Only words, spaces / - , .'
+},
+{
+  name: 'digits_only',
+  regex: /^\d*$/,
+  notice: 'Digits only'
+},
+{
+  name: 'digits9',
+  regex: /^([0-9]{9})?$/,
+  notice: 'Exactly 9 digits'
+},
+{
+  name: 'digits10',
+  regex: /^([0-9]{10})?$/,
+  notice: 'Exactly 10 digits'
+},
+{
+  name: 'number',
+  regex: /^\-?([1-9]+|0[.,]\d+|[1-9]+?[.,]\d+)$/,
+  notice: 'Provide valid number',
+},
+{
+  name: 'digits_and_separators_only',
+  regex: /^[\d.,]*$/,
+  notice: 'Digits and separators only'
+},
+{
+  name: 'letters_digits_only',
+  regex: /^[a-zA-Z0-9]*$/,
+  notice: 'Only letters, digits, space and -'
+},
+{
+  name: 'letters_digits_special',
+  regex: /^[a-zA-Z\/\-\s0-9]*$/,
+  notice: 'Only letters, digits, space / -'
+},
+{
+  name: 'letters_digits_special_2',
+  regex: /^[a-zA-Z\/\-\,\.\s0-9]*$/,
+  notice: 'Only letters, digits, space / - , .'
+},
+{
+  name: 'email',
+  regex: /^(\S+@\S+\.\S{2,})?$/,
+  notice: 'Provide valid email'
+},
+{
+  name: 'required',
+  regex: /^.+$/,
+  notice: 'This field is required'
+},
+{
+  name: 'password_6',
+  regex: /^(.{6,})?$/,
+  notice: 'Password requires at least 6 symbols'
+},
+{
+  name: 'phone',
+  regex: /^(\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{5,14})?$/,
+  notice: 'Provide phone in the international format'
+},
+{
+  name: 'hex_value',
+  regex: /^(#?[0-9a-f]*)?$/,
+  notice: 'Provide valid hex value'
+},
+{
+  name: 'rgb_color_value',
+  regex: /^(rgb\(\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\,\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\,\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\))?$/,
+  notice: 'Provide valid rgb color',
+},
+{
+  name: 'rgba_color_value',
+  regex: /^(rgba\(\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\,\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\,\s?(1[0-9]{2}|[0-9]|[1-9][0-9]|2([0-4][0-9]|5[0-5]))\s?\,\s?([01]|0\.([1-9]|[0-9][1-9]))\s?\))?$/,
+  notice: 'Provide valid rgba color',
+},
+{
+  name: 'hsl_color_value',
+  regex: /^(hsl\(\s?([1-9]?[0-9]|[12][0-9]{2}|3([0-5][0-9]|60))\s?\,\s?([1-9]?[0-9]|100)%\s?\,\s?([1-9]?[0-9]|100)%\s?\))?$/,
+  notice: 'Provide valid hsl color',
+},
+{
+  name: 'hsla_color_value',
+  regex: /^(hsla\(\s?([1-9]?[0-9]|[12][0-9]{2}|3([0-5][0-9]|60))\s?\,\s?([1-9]?[0-9]|100)%\s?\,\s?([1-9]?[0-9]|100)%\,\s?(1|0|0\.[0-9]+?)\s?\))?$/,
+  notice: 'Provide valid hsla color',
+},
+{% endhighlight %}
+</div>
+<br>
+<div class="all-options">
+  <h3>Here are all options in one place</h3>
+  {% highlight javascript %}
+{
+  eventNamespace: 'deRegexValidation',
+  events: ['input', 'change', 'blur'],
+  dataAttrs: {
+    validationCfgs: 'validation-cfg',
+  },
+  cssClasses: {
+    formValid: 'form-valid',
+    formInvalid: 'form-invalid',
+    inputValid: 'input-valid',
+    inputInvalid: 'input-invalid',
+    noticeIndex: 'validation-notice-',
+  },
+  selectors: {
+    inputParent: '.form-row',
+  },
+  noticeTagName: 'p',
+  preventSubmitOnInvalid: false,
+  disableFormOnInvalid: false,
+  validateRequiredFields: false,
+  userValidationCfgs: [],
+  on: {},
+}{% endhighlight %}
+</div>
+<div class="methods-wrap">
+  <h2>Methods</h2>
+  <div>Method usage example</div>
+  {% highlight javascript %}
+... plugin has been already initialized ...
+
+//method call example
+$('.form-1').deRegexValidation('methodName', methodArg);
+
+//real example
+$('.form-1').deRegexValidation('validateForm', true);{% endhighlight %}
+  <table class="methods">
+    <tr>
+      <th>Method name</th>
+      <th>Arguments</th>
+      <th>Default arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>validateForm</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        <div>
+          <code>scrollToInvalid</code> - provide true to first argument to enable scrolling to first highest invalid field after fields validation
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>destroy</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Destroys current instance of the plugin</td>
+    </tr>
+  </table>
+</div>
+<br>
+<div class="events-wrap">
+  <h2>Events</h2>
+  <div>Events subscription example</div>
+{% highlight javascript %}
+$('.form-1').deRegexValidation({
+...
+...rest options...
+...
+  on: {
+    init: function(form){
+      ...your logic on init...
+    }
+  }
+});{% endhighlight %}
+  <table class="events">
+    <tr>
+      <th>Event name</th>
+      <th>Arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>init</td>
+      <td>1. form - jQuery object</td>
+      <td>Fires after plugin initialization</td>
+    </tr>
+    <tr>
+      <td>beforeFieldValidation</td>
+      <td>
+        <div>1. form - jQuery object</div>
+        <div>2. input - jQuery object</div>
+      </td>
+      <td>
+        Fires before input validation
+      </td>
+    </tr>
+    <tr>
+      <td>afterFieldValidation</td>
+      <td>
+        <div>1. form - jQuery object</div>
+        <div>2. input - jQuery object</div>
+      </td>
+      <td>Fires after input validation</td>
+    </tr>
+    <tr>
+      <td>validFormSubmit</td>
+      <td>1. form - jQuery object</td>
+      <td>Fires during valid form submission</td>
+    </tr>
+    <tr>
+      <td>invalidFormSubmit</td>
+      <td>1. form - jQuery object</td>
+      <td>Fires during invalid form submission</td>
+    </tr>
+    <tr>
+      <td>beforeDestroy</td>
+      <td>1. form - jQuery object</td>
+      <td>Fires before current plugin instance destruction</td>
+    </tr>
+  </table>
+</div>
+<br>
+<div class="examples-wrap">
+  <h2>Examples</h2>
+  <h3>Basic</h3>
+  <p>HTML</p>
+{% highlight html %}
+<form class="form-2" novalidate>
+  <div class="form-row">
+    <label>First name: <input type="text" data-validation-cfg="letters_special">
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Your number: <input type="text" data-validation-cfg="digits_only">
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Your email: <input type="text" data-validation-cfg="email">
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Your street: <input type="text" data-validation-cfg="letters_digits_special_2">
+    </label>
+  </div>
+  <div class="form-row-submit">
+    <button type="submit">submit</button>
+  </div>
+</form>{% endhighlight %}
+  <p>Javascript</p>
+{% highlight javascript %}
+'use strict';
+
+(function ($, window, document, undefined) {
+
+  $(function () {
+
+    function initDeRegexValidation() {
+      $('.form-2').deRegexValidation();
+    }
+
+    initDeRegexValidation();
+
+  });
+
+})(jQuery, window, document);
+{% endhighlight %}
+  <p>Result</p>
+  <form class="form-2" novalidate>
+    <div class="form-row">
+      <label>First name: <input type="text" data-validation-cfg="letters_special">
+      </label>
+    </div>
+    <div class="form-row">
+      <label>Your number: <input type="text" data-validation-cfg="digits_only">
+      </label>
+    </div>
+    <div class="form-row">
+      <label>Your email: <input type="text" data-validation-cfg="email">
+      </label>
+    </div>
+    <div class="form-row">
+      <label>Your street: <input type="text" data-validation-cfg="letters_digits_special_2">
+      </label>
+    </div>
+    <div class="form-row-submit">
+      <button type="submit">submit</button>
+    </div>
+  </form>
+  <h3>Custom validation configs</h3>
+  <p>In this example we are going to add our custom validation config though HTML layout</p>
+  <p>HTML attribute <code>data-validation-cfg</code> - is the same as <code>userValidationCfgs</code> provided through Javascript</p>
+  <p>HTML</p>
+  {% highlight html %}
+<form class="form-3" novalidate>
+  <div class="form-row">
+    <label>First name: <input type="text" data-validation-cfg="[&quot;required&quot;,{&quot;name&quot;:&quot;from_1_to_5&quot;,&quot;regex&quot;:&quot;\/^[1-5]?$\/&quot;,&quot;notice&quot;:&quot;Please provide number from 1 to 5&quot;}]">
+    </label>
+  </div>
+  <div class="form-row-submit">
+    <button type="submit">submit</button>
+  </div>
+</form>{% endhighlight %}
+  <p>Attribute data in JSON</p>
+{% highlight javascript %}
+[
+    "required",
+  {
+    "name": "from_1_to_5",
+    "regex":"\/^[1-5]?$\/",
+    "notice":"Please provide number from 1 to 5"
+  }
+]
+{% endhighlight %}
+  <p>In order to prevent undesired code behavior you should always <strong>ESCAPE</strong> all your HTML attributes data before insertion.</p>
+  <p>Let's take a look at PHP example on how to escape the attribute's data:</p>
+
+{% highlight php %}
+<?php
+$validation_rules = array(
+//use provided configs by name
+  'required',
+//add your own
+  array(
+    'name'  => "from_1_to_5",
+    'regex' => "/^[1-5]?$/",
+    'notice'=> "Please provide number from 1 to 5",
+  ),
+);
+$validation_rules = json_encode($validation_rules);
+$validation_rules = htmlspecialchars($validation_rules,ENT_QUOTES);
+//[&quot;required&quot;,{&quot;name&quot;:&quot;from_1_to_5&quot;,&quot;regex&quot;:&quot;\/^[1-5]?$\/&quot;,&quot;notice&quot;:&quot;Please provide number from 1 to 5&quot;}]
+  {% endhighlight %}
+  <p>Javascript</p>
+{% highlight javascript %}
+'use strict';
+
+(function ($, window, document, undefined) {
+
+  $(function () {
+
+    function initDeRegexValidation() {
+      $('.form-3').deRegexValidation();
+    }
+
+    initDeRegexValidation();
+
+  });
+
+})(jQuery, window, document);
+{% endhighlight %}
+  <p>Result</p>
+  <form class="form-3" novalidate>
+    <div class="form-row">
+      <label>Provide number: <input type="text" data-validation-cfg="[&quot;required&quot;,{&quot;name&quot;:&quot;from_1_to_5&quot;,&quot;regex&quot;:&quot;\/^[1-5]?$\/&quot;,&quot;notice&quot;:&quot;Please provide number from 1 to 5&quot;}]">
+      </label>
+    </div>
+    <div class="form-row-submit">
+      <button type="submit">submit</button>
+    </div>
+  </form>
+
+  <h3>Multilingual messages</h3>
+  <p>To use this plugin with other languages than English you can override default messages or provide your own custom validation configs.</p>
+  <p>HTML</p>
+{% highlight html %}
+<form class="form-4" novalidate>
+  <div class="form-row">
+    <label>Enter letters: <input type="text" data-validation-cfg="[{&quot;name&quot;:&quot;required&quot;,&quot;notice&quot;:&quot;Required in your custom language&quot;},{&quot;name&quot;:&quot;letters&quot;,&quot;notice&quot;:&quot;Only letters in your custom language&quot;}]">
+    </label>
+  </div>
+  <div class="form-row-submit">
+    <button type="submit">submit</button>
+  </div>
+</form>{% endhighlight %}
+  <p>Attribute data in JSON</p>
+{% highlight json %}
+[
+  {
+    "name": "required",
+    "notice": "Required in your custom language"
+  },
+  {
+    "name": "letters",
+    "notice": "Only letters in your custom language"
+  }
+]{% endhighlight %}
+  <p>Javascript</p>
+{% highlight javascript %}
+'use strict';
+
+(function ($, window, document, undefined) {
+
+  $(function () {
+
+    function initDeRegexValidation() {
+      $('.form-3').deRegexValidation();
+    }
+
+    initDeRegexValidation();
+
+  });
+
+})(jQuery, window, document); {% endhighlight %}
+  <p>Result</p>
+  <form class="form-4" novalidate>
+    <div class="form-row">
+      <label>Enter letters:
+        <input type="text" data-validation-cfg="[{&quot;name&quot;:&quot;required&quot;,&quot;notice&quot;:&quot;Required in your custom language&quot;},{&quot;name&quot;:&quot;letters&quot;,&quot;notice&quot;:&quot;Only letters in your custom language&quot;}]">
+      </label>
+    </div>
+    <div class="form-row-submit">
+      <button type="submit">submit</button>
+    </div>
+  </form>
+</div>

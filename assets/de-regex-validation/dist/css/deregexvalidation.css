@@ -1,0 +1,8 @@
+/**
+  If you have changed settings.cssClasses.noticeIndex to
+  another than validation-notice please update this file
+  accordingly
+ */
+[class*=validation-notice] {
+  margin-top: 10px;
+  color: red; }

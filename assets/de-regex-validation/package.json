@@ -1,0 +1,43 @@
+{
+  "name": "deregexvalidation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexthedeathripper007/deRegexValidation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexthedeathripper007/deRegexValidation/issues"
+  },
+  "homepage": "https://github.com/alexthedeathripper007/deRegexValidation#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.3.0",
+    "browserify-licenses": "^1.4.6",
+    "gulp": "^4.0.0",
+    "gulp-append-prepend": "^1.0.8",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "prependify": "^1.3.0",
+    "tsify": "^4.0.1",
+    "typescript": "^3.5.3",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "g": "^2.0.1",
+    "tslint": "^5.18.0"
+  }
+}

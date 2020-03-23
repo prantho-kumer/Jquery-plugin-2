@@ -1,0 +1,158 @@
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+
+    /*   header start */
+    .header {
+        padding: 15px 0;
+    }
+
+    .menu ul li {
+        text-align: right;
+        padding: 0;
+    }
+
+    .menu ul li a:hover {
+        color: #fff !important;
+        background-color: transparent;
+    }
+
+    /*   header end */
+    /*    banner start*/
+
+    .slider-content h1 {
+        font-size: 28px;
+    }
+
+    .slider-content h2 {
+        font-size: 18px;
+        margin: 15px 0;
+        word-spacing: 0px;
+        letter-spacing: 0px;
+    }
+
+    .slider-content p {
+        word-spacing: 0px;
+    }
+
+    /*    banner end*/
+    /*feature start*/
+
+   
+
+    /*feature end*/
+    /*contact start*/
+    .mt-60 {
+        margin-top: 40px;
+    }
+
+    .f_content {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .f_content p {
+        word-spacing: 0px;
+        letter-spacing: 0px;
+    }
+
+    .contact_form {
+        margin-top: 10px;
+    }
+
+    .contact_form_button {
+        margin-top: 5px;
+    }
+
+    .contact_title {
+        font-size: 28px;
+    }
+
+    .c_subtitle {
+        line-height: 22px;
+        font-size: 18px;
+        word-spacing: 0px;
+        letter-spacing: 0px;
+    }
+
+    .address {
+        text-align: center;
+    }
+
+    /*contact end*/
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    /*   header start */
+    .header {
+        padding: 25px 0;
+    }
+
+    .menu ul li {
+        text-align: right;
+        padding: 0;
+    }
+
+    .menu ul li a:hover {
+        color: #fff !important;
+        background-color: transparent;
+    }
+
+    /*   header end */
+    /*    banner start*/
+    .slider-content h2 {
+        margin: 15px 0;
+    }
+
+    /*    banner end*/
+    /*contact start*/
+    .mt-60 {
+        margin-top: 50px;
+    }
+
+    .f_content {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .f_content p {
+        word-spacing: 0px;
+        letter-spacing: 0px;
+    }
+
+    /*contact end*/
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    /*   header start */
+    .menu ul li {
+        text-align: right;
+        padding: 0;
+    }
+
+    .menu ul li a:hover {
+        color: #fff !important;
+        background-color: transparent;
+    }
+
+    /*   header end */
+    /*contact start*/
+    .mt-60 {
+        margin-top: 60px;
+    }
+
+    .contact_form {
+        margin-top: 20px;
+    }
+
+    /*contact end*/
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {}

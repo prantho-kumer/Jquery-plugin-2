@@ -27,3 +27,27 @@
 .error {
     color: red;
 }
+
+.owl_carousel {
+    padding: 80px 0;
+}
+
+/* img center */
+.img-center {
+    text-align: center;
+    text-align: -moz-center;
+    text-align: -webkit-center;
+
+}
+
+/* aos */
+.item {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    text-align: -webkit-center;
+    min-width: 200px;
+    min-height: 200px;
+    background-color: red;
+    margin: 10px;
+}
